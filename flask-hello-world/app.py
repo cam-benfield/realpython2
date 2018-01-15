@@ -1,37 +1,37 @@
+# import the flask class from the flask module
 from flask import Flask
 
+# create the application object
 app = Flask(__name__)
 
+# error handling
+app.config["DEBUG"] = True
 
+
+# use the decorator pattern to
+# link the view function to a url
 @app.route("/")
 @app.route("/hello")
+# define the view using a function, which returns a string
 def hello_world():
-    return("Hello, world!")
+    return("Hello, world!?!?!?!?!?")
 
 
+# dynamic route
 @app.route("/test/<search_query>")
 def search(search_query):
     return(search_query)
 
 
-@app.route("/integer/<int:value>")
-def int_type(value):
-    return(value, "Next is:", value + 1, "Correct")
+# dynamic route with explicit status coddes
+@app.route("/name/<name>")
+def index(name):
+    if name.lower == "michael":
+        return "Hello, {}".format(name), 200
+    else:
+        return "Not Found", 404
 
 
-@app.route("/float/<float:value>")
-def float_type(value):
-    return(value)
-    return("Next is:")
-    return(value + 1)
-    return("Correct")
-
-
-@app.route("/path/<path:value>")
-def path_type(value):
-    return(value)
-    return("Correct")
-
-
+# start the development surver using the run() method
 if __name__ == "__main__":
     app.run()
